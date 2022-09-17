@@ -1,9 +1,10 @@
 from flask  import Flask
 from flask import render_template
+from os import getenv
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/", methods=["POST"])
 def kirjaudu():
     return render_template("etusivu.html")
 
