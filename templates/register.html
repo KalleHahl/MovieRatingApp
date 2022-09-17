@@ -3,11 +3,13 @@
 
 <title>Elokuvakirjasto rekisteröidy</title>
 
-<body>
+<form action="/register" method="post">
     <h1>Rekisteöidy käyttäjäksi!</h1>
     Käyttäjätunnus: <br>
     <input type="text" name="käyttäjätunnus"> <br>
-    Salasana: <br>
-    <input type="text" name="password" minlength="8" maxlength="20">
-    <p>*Salasanan tulee olla vähintään 8 ja enintään 20 kirjainta pitkä</p>
-</body>
+    Salasana (vähintään 8 merkkiä): <br>
+    <input type="password" name="salasana" minlength="8"><br>
+    <input type="submit" value="Rekisteröidy">
+    
+</form>
+<a href="/">Palaa takaisin</a>
