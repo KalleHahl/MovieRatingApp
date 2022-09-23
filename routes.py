@@ -1,25 +1,40 @@
+ 
+import re
 from app import app
 from flask import render_template, redirect, request
 import kayttajat
 
-@app.route("/", methods=["GET", "POST"])
-def kirjaudu():
+@app.route("/")
+def index():
     return render_template("etusivu.html")
 
+@app.route("/login", methods=["post"])
+def  login():
+    username = request.form["username"]
+    password = request.form["password"]
+    return redirect("/")
+
+    
+
 @app.route("/register", methods=["get", "post"])
-def rekisteröidy():
+def register():
     if request.method == "GET":
         return render_template("register.html")
 
     if request.method == "POST":
-        kayttaja = request.form["käyttäjätunnus"]
+        username = request.form["username"]
 
-        salasana = request.form["salasana"]
+        password = request.form["password1"]
 
-    if not kayttajat.rekisteroidy(kayttaja, salasana):
+    if not kayttajat.register(username, password):
         return "moi"
     return redirect("/")
 
+app.route("/logout")
+def logout():
+    kayttajat.logout()
+    return redirect("/")
+
 app.route("/library")
-def kirjasto():
+def library():
     return render_template("kirjasto.html")
