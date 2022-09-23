@@ -19,3 +19,7 @@ def rekisteröidy():
     if not kayttajat.rekisteroidy(kayttaja, salasana):
         return "moi"
     return redirect("/")
+
+app.route("/library")
+def kirjasto():
+    return render_template("kirjasto.html")

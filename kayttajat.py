@@ -5,25 +5,25 @@ import db
 from werkzeug.security import check_password_hash, generate_password_hash
 
 
-def kirjaudu(kayttaja, salasana):
+def login(username, password):
     sql = "SELECT password, id, role FROM users WHERE name=:name"
-    kuka = db.db.session.execute(sql, {"name":kayttaja})
-    kirjautunut = kuka.fetchone()
-    if not kirjautunut:
+    user = db.db.session.execute(sql, {"name":username})
+    registered = user.fetchone()
+    if not registered:
         return False
-    if not check_password_hash(kayttaja[0], salasana):
+    if not check_password_hash(user[0], password):
         return False
-    session["user_id"] = kayttaja[1]
-    session["user_name"] = kayttaja
+    session["user_id"] = user[1]
+    session["user_name"] = user
     return  True
 
-def rekisteroidy(kayttaja, salasana):
-    hash_value = generate_password_hash(salasana)
+def register(username, password):
+    hash_value = generate_password_hash(password)
 
     try:
         sql = """INSERT INTO users (name, password) VALUES (:name, :password)"""
-        db.db.session.execute(sql, {"name":kayttaja, "password": hash_value})
+        db.db.session.execute(sql, {"name":username, "password": hash_value})
         db.db.session.commit()
     except:
         return False
-    return kirjaudu(kayttaja, salasana)
+    return login(username, password)
