@@ -8,11 +8,19 @@ import kayttajat
 def index():
     return render_template("etusivu.html")
 
-@app.route("/login", methods=["post"])
+@app.route("/login", methods=["get", "post"])
 def  login():
-    username = request.form["username"]
-    password = request.form["password"]
-    return redirect("/")
+    if request.method == "GET":
+        return render_template("login.html")
+    if request.method == "POST":
+
+        username = request.form["username"]
+        password = request.form["password"]
+        print("moi")
+
+        if not kayttajat.login(username, password):
+                return render_template("error.html", message="Käyttäjätunnus tai salasana meni väärin")
+        return redirect("/kirjasto")
 
     
 
@@ -25,7 +33,9 @@ def register():
         username = request.form["username"]
 
         password = request.form["password1"]
-
+        password2 = request.form["password2"]
+        if password != password2:
+            return render_template("error.html", message = "Salasanat eivät olleet samat")
     if not kayttajat.register(username, password):
         return "moi"
     return redirect("/")
