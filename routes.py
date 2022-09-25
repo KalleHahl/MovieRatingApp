@@ -36,8 +36,8 @@ def register():
         if password != password2:
             return render_template("error.html", message = "Salasanat eivät olleet samat")
     if not kayttajat.register(username, password):
-        return "moi"
-    return redirect("/")
+        return render_template("error_html", message="Rekisteröinti virhe!")
+    return redirect("/login")
 
 @app.route("/logout")
 def logout():
