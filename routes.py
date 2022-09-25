@@ -16,11 +16,10 @@ def  login():
 
         username = request.form["username"]
         password = request.form["password"]
-        print("moi")
 
         if not kayttajat.login(username, password):
                 return render_template("error.html", message="Käyttäjätunnus tai salasana meni väärin")
-        return redirect("/kirjasto")
+        return redirect("/library")
 
     
 

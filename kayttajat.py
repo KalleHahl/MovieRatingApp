@@ -6,7 +6,6 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 
 def login(username, password):
-    print("hei")
     sql = "SELECT password, id FROM users WHERE name=:name"
     registered = db.session.execute(sql, {"name":username})
     user = registered.fetchone()
@@ -14,7 +13,6 @@ def login(username, password):
         return False
     if not check_password_hash(user[0], password):
         return False
-    print(user[1])
 
     session["user_id"] = user[1]
     session["user_name"] = username
