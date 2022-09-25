@@ -16,9 +16,9 @@ def  login():
 
         username = request.form["username"]
         password = request.form["password"]
-
         if not kayttajat.login(username, password):
                 return render_template("error.html", message="Käyttäjätunnus tai salasana meni väärin")
+        print("moi")
         return redirect("/library")
 
     
@@ -39,11 +39,12 @@ def register():
         return "moi"
     return redirect("/")
 
-app.route("/logout")
+@app.route("/logout")
 def logout():
     kayttajat.logout()
     return redirect("/")
 
-app.route("/library")
+@app.route("/library", methods=["get", "post"])
 def library():
-    return render_template("kirjasto.html")
+    if request.method == "GET":
+        return render_template("kirjasto.html")
