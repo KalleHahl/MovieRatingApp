@@ -3,3 +3,10 @@ CREATE TABLE users (
     name TEXT,
     password TEXT
 );
+
+CREATE TABLE movies (
+    id SERIAL PRIMARY KEY,
+    name TEXT,
+    director TEXT,
+    year INTEGER
+);

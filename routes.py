@@ -36,7 +36,7 @@ def register():
         if password != password2:
             return render_template("error.html", message = "Salasanat eivät olleet samat")
     if not kayttajat.register(username, password):
-        return render_template("error_html", message="Rekisteröinti virhe!")
+        return render_template("error.html", message="Rekisteröinti virhe!")
     return redirect("/login")
 
 @app.route("/logout")
@@ -48,3 +48,8 @@ def logout():
 def library():
     if request.method == "GET":
         return render_template("kirjasto.html")
+
+@app.route("/add", methods=["get", "post"])
+def add():
+    if request.method == "GET":
+        return render_template("add.html")
