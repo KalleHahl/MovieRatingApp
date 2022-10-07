@@ -1,8 +1,10 @@
  
 import re
 from app import app
-from flask import render_template, redirect, request
+from flask import render_template, redirect, request, session
 import kayttajat
+import movies
+from db import db
 
 @app.route("/")
 def index():
@@ -18,7 +20,6 @@ def  login():
         password = request.form["password"]
         if not kayttajat.login(username, password):
                 return render_template("error.html", message="Käyttäjätunnus tai salasana meni väärin")
-        print("moi")
         return redirect("/library")
 
     
@@ -47,9 +48,26 @@ def logout():
 @app.route("/library", methods=["get", "post"])
 def library():
     if request.method == "GET":
-        return render_template("kirjasto.html")
+        user_id = session["user_id"]
+        sql = """SELECT name FROM movies WHERE user_id= :user_id"""
+        result = db.session.execute(sql, {"user_id":user_id})
+        movies = result.fetchall()
+        return render_template("kirjasto.html", movies = movies)
 
-@app.route("/add", methods=["get", "post"])
-def add():
+@app.route("/add_movie", methods=["get", "post"])
+def add_movie():
     if request.method == "GET":
-        return render_template("add.html")
+        return render_template("add_movie.html")
+    
+    if request.method == "POST":
+        name = request.form["name"]
+        director = request.form["director"]
+        year = request.form["year"]
+
+        if not movies.add_movie(name, director, year):
+            return render_template("error.html", message="Jokin meni pieleen, yritä uudelleen")
+        return redirect("/library")
+
+@app.route("/movie/<name>")
+def movie(name):
+    return render_template("movie.html", movie=name)

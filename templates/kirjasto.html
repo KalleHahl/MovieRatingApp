@@ -7,4 +7,10 @@
 <br>
 <a href="/logout">Kirjaudu ulos</a>
 
-<a href="/add">Lisää elokuva</a>
+<a href="/add_movie">Lisää elokuva</a>
+
+<hr>
+{% for movie in movies %}
+<a href="/movie/{{movie.name}}">{{movie.name}}</a>
+<hr>
+{% endfor %}
