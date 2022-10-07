@@ -17,5 +17,6 @@ CREATE TABLE ratings (
     movie_name TEXT,
     user_id INTEGER,
     rating INTEGER,
-    text TEXT
+    text TEXT,
+    user_name TEXT
 );

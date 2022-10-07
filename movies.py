@@ -15,10 +15,11 @@ def add_movie(name, director, year):
 
 def review(movie, rating, text):
     user = session["user_id"]
+    username = session["user_name"]
     movie_name = movie
     try:
-        sql = """INSERT INTO ratings (movie_name, user_id, rating, text) VALUES (:movie_name, :user_id, :rating, :text)"""
-        db.session.execute(sql, {"movie_name":movie_name, "user_id":user, "rating":rating, "text":text})
+        sql = """INSERT INTO ratings (movie_name, user_id, rating, text, user_name) VALUES (:movie_name, :user_id, :rating, :text, :user_name)"""
+        db.session.execute(sql, {"movie_name":movie_name, "user_id":user, "rating":rating, "text":text, "user_name":username})
         db.session.commit()
     except:
         return False

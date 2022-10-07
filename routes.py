@@ -70,7 +70,14 @@ def add_movie():
 
 @app.route("/movie/<name>")
 def movie(name):
-    return render_template("movie.html", movie=name)
+    user = session["user_id"]
+    oma_sql = """SELECT rating, text FROM ratings WHERE movie_name= :movie_name AND user_id= :user_id"""
+    oma_result = db.session.execute(oma_sql, {"movie_name":name, "user_id":user})
+    omat_arvostelut = oma_result.fetchone()
+    muut_sql = """SELECT rating, text, user_name FROM ratings WHERE movie_name= :movie_name AND user_id!= :user_id"""
+    muut_result = db.session.execute(muut_sql, {"movie_name":name, "user_id":user})
+    muut_arvostelut = muut_result.fetchall()
+    return render_template("movie.html", movie=name, omat = omat_arvostelut, muut = muut_arvostelut)
 
 @app.route("/rate_movie/<name>", methods=["get", "post"])
 def rate_movie(name):
