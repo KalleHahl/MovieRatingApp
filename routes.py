@@ -71,3 +71,16 @@ def add_movie():
 @app.route("/movie/<name>")
 def movie(name):
     return render_template("movie.html", movie=name)
+
+@app.route("/rate_movie/<name>", methods=["get", "post"])
+def rate_movie(name):
+    if request.method == "GET":
+        return render_template("rate_movie.html", movie = name)
+    if request.method == "POST":
+        rating = request.form["rating"]
+        text = request.form["text"]
+
+        if not movies.review(name, int(rating),text):
+            return render_template("error.html", message="Jokin meni pieleen")
+        return redirect("/movie/"+name)
+

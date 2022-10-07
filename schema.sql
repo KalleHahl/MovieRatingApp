@@ -11,3 +11,11 @@ CREATE TABLE movies (
     year INTEGER,
     user_id INTEGER
 );
+
+CREATE TABLE ratings (
+    id SERIAL PRIMARY KEY,
+    movie_name TEXT,
+    user_id INTEGER,
+    rating INTEGER,
+    text TEXT
+);

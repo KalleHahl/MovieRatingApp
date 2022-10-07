@@ -1,0 +1,12 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Arvostele {{movie}}</title>
+<h1>Arvostele {{movie}}</h1>
+
+<form action="/rate_movie/{{movie}}" method="POST">
+    Arvosana 1-10:<br>
+    <input type="text" name="rating"><br>
+    Lyhyt teksti:<br>
+    <input type="text" name="text"><br>
+    <input type="submit" value="Lisää">
+</form>
