@@ -7,10 +7,12 @@ Sovelluksen avulla voi kirjata ylös katsomiaan elokuvia ja antaa niille arvoste
 
 ### Tämän hetkinen tilanne:
 
-* Sovellukseen luotu etusivu, kirjautumissivu, rekisteröitymissivu sekä erittäin alkeellinen etusivu, jossa ei vielä toimintoja
-* Sovelluksen tekninen rakenne alkaa olemaan selvillä
-* Rekisteröityminen ja kirjautuminen käyttäjälle toimii
-
+* Sovellukseen voi rekisteröidä käyttäjän ja kirjautua sisään
+* Kirjautumisen jälkeen aukeaa käyttäjän etusivu, jossa on mahdollisuudet lisätä elokuva tai ohjaaja tai kirjautua ulos
+* Elokuvan ja ohjaajan lisäys toimii ainakin omilla testeillä moitteettomasti
+* Jos käyttäjä on lisännyt elokuvia tai ohjaajia, tulevat ne näkyviin etusivulle
+* Etusivulta voi klikata omia elokuvia, joka vie elokuvan omalle sivulle, jossa voi itse antaa arvostelun ja jossa näkee myös muiden käyttäjien arvosteluja kyseiselle elokuvalle
+* Error sivutkin ovat kohdillaan, elokuvien/ohjaajien nimet eivät voi olla liian pitkiä (100 chr) eikä syntymä/julkaisuvuoteen voi laittaa kuin lukuja. Pituus pätee myös käyttäjänimelle ja salasanalle ja rekisteröidessä salasanojen on oltava samat.
 
 ### Sovelluksen ominaisuudet:
 
