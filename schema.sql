@@ -20,3 +20,10 @@ CREATE TABLE ratings (
     text TEXT,
     user_name TEXT
 );
+
+CREATE TABLE directors (
+    id SERIAL PRIMARY KEY,
+    name TEXT,
+    birth_year INTEGER,
+    user_id INTEGER
+);
