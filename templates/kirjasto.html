@@ -3,14 +3,29 @@
 
 <title>Elokuvakirjasto</title>
 
-<h1>Kirjasto</h1>
-<br>
-<a href="/logout">Kirjaudu ulos</a>
+<style>
+    p{
+        display:inline-block
+    }
+</style>
 
-<a href="/add_movie">Lisää elokuva</a>
+<h1>Käyttäjän {{username}} elokuvat</h1>
+<br>
+<a href="/logout">Kirjaudu ulos</a><br>
+<br>
+
+<p><a href="/add_movie">Lisää elokuva</a></p>&nbsp;&nbsp;&nbsp;&nbsp;<p><a href="/add_director">Lisää ohjaaja</a></p><br>
+<br>
+Elokuvasi:
 
 <hr>
 {% for movie in movies %}
 <a href="/movie/{{movie.name}}">{{movie.name}}</a>
+<hr>
+{% endfor %}<br>
+Ohjaajasi:
+<hr>
+{% for director in directors %}
+{{director.name}}
 <hr>
 {% endfor %}
