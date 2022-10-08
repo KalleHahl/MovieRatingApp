@@ -1,4 +1,5 @@
  
+from cgi import test
 import re
 from app import app
 from flask import render_template, redirect, request, session
@@ -19,7 +20,7 @@ def  login():
         username = request.form["username"]
         password = request.form["password"]
         if not kayttajat.login(username, password):
-                return render_template("error.html", message="Käyttäjätunnus tai salasana meni väärin")
+                return render_template("error.html", message="Käyttäjätunnus tai salasana meni väärin", route="/login")
         return redirect("/library")
 
     
@@ -35,9 +36,13 @@ def register():
         password = request.form["password1"]
         password2 = request.form["password2"]
         if password != password2:
-            return render_template("error.html", message = "Salasanat eivät olleet samat")
+            return render_template("error.html", message = "Salasanat eivät olleet samat", route="/register")
+
+        if len(password) > 100 or len(username)>100:
+            return render_template("error.html", message = "Käyttäjänimi tai salasana liian pitkä (max 100)", route="/register")
+            
     if not kayttajat.register(username, password):
-        return render_template("error.html", message="Rekisteröinti virhe!")
+        return render_template("error.html", message="Rekisteröinti virhe!", route="/register")
     return redirect("/login")
 
 @app.route("/logout")
@@ -64,8 +69,18 @@ def add_movie():
         director = request.form["director"]
         year = request.form["year"]
 
+        if len(name) > 100:
+            return render_template("error.html", message = "Liian pitkä nimi", route="/add_movie")
+        
+        if len(director) > 100:
+            return render_template("error.html", message = "Liian pitkä nimi", route="/add_movie")
+        
+        if len(year) > 100:
+            return render_template("error.html", message = "Liian suuri luku", route="/add_movie")
+        
+
         if not movies.add_movie(name, director, year):
-            return render_template("error.html", message="Jokin meni pieleen, yritä uudelleen")
+            return render_template("error.html", message="Jokin meni pieleen, yritä uudelleen", route="/add_movie")
         return redirect("/library")
 
 @app.route("/movie/<name>")
@@ -87,7 +102,16 @@ def rate_movie(name):
         rating = request.form["rating"]
         text = request.form["text"]
 
-        if not movies.review(name, int(rating),text):
-            return render_template("error.html", message="Jokin meni pieleen")
+        try:
+            rating = int(rating)
+        except:
+            return render_template("error.html", message="Arvosanan on oltava luku väliltä 1-10", route="/rate_movie/"+name)
+
+        if rating > 10 or rating < 1:
+            return render_template("error.html", message="Arvosanan on oltava luku väliltä 1-10", route="/rate_movie/"+name)
+        if len(text) > 5000:
+            return render_template("error.html", message="Liian pitkä arvostelu", route="/rate_movie/"+name)
+        if not movies.review(name, rating,text):
+            return render_template("error.html", message="Jokin meni pieleen", route="/rate_movie/"+name)
         return redirect("/movie/"+name)
 
