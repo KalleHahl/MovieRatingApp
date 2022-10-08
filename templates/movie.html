@@ -1,8 +1,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>{{movie}}</title>
+<style>
+    p{
+        display: inline-block
+    }
+</style>
 <h1>{{movie}}</h1>
 <br>
+<body>
+    <p>Ohjaaja: {{movie_info.director}}</p>&nbsp;&nbsp;&nbsp;&nbsp;</p>Julkaisu vuosi: {{movie_info.year}}</p><br>
+</body>
 <a href="/rate_movie/{{movie}}">Arvostele</a>
 <br>
 <h3>Oma arvostelu:</h3>
