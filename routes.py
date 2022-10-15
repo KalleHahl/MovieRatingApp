@@ -49,6 +49,11 @@ def register():
 
         if len(password) > 100 or len(username)>100:
             return render_template("error.html", message = "Käyttäjänimi tai salasana liian pitkä (max 100)", route="/register")
+        
+        if len(password) < 8 or len(username) == 0:
+            return render_template("error.html", message = "Käyttäjänimi tai salasana liian lyhyt", route="/register")
+
+
             
     if not kayttajat.register(username, password):
         return render_template("error.html", message="Rekisteröinti virhe!", route="/register")
