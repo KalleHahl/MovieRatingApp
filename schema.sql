@@ -28,10 +28,10 @@ CREATE TABLE ratings (
 CREATE TABLE user_directors (
     user_id INTEGER REFERENCES users,
     director_id INTEGER REFERENCES directors
-)
+);
 
 CREATE TABLE directors (
     id SERIAL PRIMARY KEY,
     name TEXT,
-    birth_year INTEGER,
+    birth_year INTEGER
 );

@@ -75,11 +75,11 @@ def library():
 
         user_id = session["user_id"]
 
-        sql = """SELECT name FROM movies WHERE user_id= :user_id"""
+        sql = """SELECT name FROM movies JOIN user_movies ON movies.id=user_movies.movie_id WHERE user_id= :user_id"""
         result = db.session.execute(sql, {"user_id":user_id})
         movies = result.fetchall()
 
-        sql = """SELECT name FROM directors WHERE user_id= :user_id"""
+        sql = """SELECT name FROM directors JOIN user_directors ON directors.id=user_directors.director_id WHERE user_id= :user_id"""
         result = db.session.execute(sql, {"user_id":user_id})
         directors = result.fetchall()
 
