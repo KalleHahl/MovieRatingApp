@@ -1,0 +1,12 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>{{name}}</title>
+
+<h1>{{name}}</h1>
+<br>
+Elokuvat:
+<hr>
+{% for movie in movies %}
+<a href="/movie/{{movie.name}}">{{movie.name}}</a>
+<hr>
+{% endfor %}
