@@ -9,7 +9,7 @@
 <h1>{{movie}}</h1>
 <br>
 <body>
-    <p>Ohjaaja: {{movie_info.director}}</p>&nbsp;&nbsp;&nbsp;&nbsp;</p>Julkaisu vuosi: {{movie_info.year}}</p><br>
+    <p>Ohjaaja: <a href="/director/{{movie_info.director}}">{{movie_info.director}}</a></p>&nbsp;&nbsp;&nbsp;&nbsp;</p>Julkaisu vuosi: {{movie_info.year}}</p><br>
 </body>
 <a href="/rate_movie/{{movie}}">Arvostele</a>
 <br>

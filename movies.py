@@ -12,7 +12,7 @@ def add_movie(name, director, year):
             sql_result = db.session.execute(sql, {"name": name})
             
             movie_id = sql_result.fetchone()
-            print(movie_id)
+            
 
             sql = """INSERT INTO user_movies (user_id, movie_id) VALUES (:user_id, :movie_id)"""
             db.session.execute(sql, {"user_id": user, "movie_id":movie_id[0]})
@@ -25,14 +25,17 @@ def add_movie(name, director, year):
             sql = """INSERT INTO movies (name, director, year) VALUES (:name, :director, :year)"""
             db.session.execute(sql, {"name":name, "director": director, "year": year})
             db.session.commit()
+            print(1)
 
-            sql = """SELECT movie_id FROM movies WHERE name= :name"""
+            sql = """SELECT id FROM movies WHERE name= :name"""
             sql_result = db.session.execute(sql, {"name": name})
             movie_id = sql_result.fetchone()
+            print(2)
 
             sql = """INSERT INTO user_movies (user_id, movie_id) VALUES (:user_id, :movie_id)"""
-            db.session.execute(sql, {"user_id": user, "movie_id":movie_id})
+            db.session.execute(sql, {"user_id": user, "movie_id":movie_id[0]})
             db.session.commit()
+            print(3)
 
     except:
         print("pieleen män")

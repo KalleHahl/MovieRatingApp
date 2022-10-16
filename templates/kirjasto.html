@@ -26,6 +26,6 @@ Elokuvasi:
 Ohjaajasi:
 <hr>
 {% for director in directors %}
-{{director.name}}
+<a href="/director/{{director.name}}">{{director.name}}</a>
 <hr>
 {% endfor %}
