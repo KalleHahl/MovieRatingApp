@@ -194,6 +194,7 @@ def director(name):
     sql = """SELECT name FROM movies WHERE director= :name"""
     sql_result = db.session.execute(sql, {"name":name})
     movies = sql_result.fetchall()
-    movies = list(set(movies))
+    movies = list(movies)
+    movies = set(movies)
     return render_template("director.html", name=name, movies=movies)
         
