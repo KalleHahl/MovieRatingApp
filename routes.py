@@ -131,7 +131,16 @@ def movie(name):
     muut_result = db.session.execute(muut_sql, {"movie_name":name, "user_id":user})
     muut_arvostelut = muut_result.fetchall()
 
-    return render_template("movie.html", movie=name, movie_info = movie_info, omat = omat_arvostelut, muut = muut_arvostelut)
+    sql = """SELECT Avg(rating) FROM ratings WHERE movie_name= :movie_name"""
+    sql_result = db.session.execute(sql, {"movie_name":name})
+    avg = sql_result.fetchone()
+    if avg[0]:
+        print(1)
+        avg = round(avg[0], 1)
+    else:
+        avg = "Ei vielä arvosteluja!"
+
+    return render_template("movie.html", movie=name, movie_info = movie_info, omat = omat_arvostelut, muut = muut_arvostelut, avg=avg)
 
 
 @app.route("/rate_movie/<name>", methods=["get", "post"])
@@ -194,7 +203,15 @@ def director(name):
     sql = """SELECT DISTINCT name FROM movies WHERE director= :name"""
     sql_result = db.session.execute(sql, {"name":name})
     movies = sql_result.fetchall()
-    #movies = list(movies)
-    #movies = set(movies)
-    return render_template("director.html", name=name, movies=movies)
+
+    sql = """SELECT Avg(rating) FROM ratings WHERE movie_name IN (SELECT DISTINCT name FROM movies WHERE director= :director)"""
+    sql_result = db.session.execute(sql, {"director":name})
+    avg = sql_result.fetchone()
+
+    if avg[0]: 
+        avg = round(avg[0], 1)
+    else:
+        avg = "Ei vielä arvosteluja!"
+
+    return render_template("director.html", name=name, movies=movies, avg= avg)
         

@@ -18,8 +18,8 @@ CREATE TABLE movies (
 
 
 CREATE TABLE ratings (
-    movie_id INTEGER REFERENCES movies,
-    user_id INTEGER,
+    movie_name INTEGER TEXT,
+    user_id INTEGER REFERENCES users,
     rating INTEGER,
     text TEXT,
     user_name TEXT
