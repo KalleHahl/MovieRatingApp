@@ -191,7 +191,7 @@ def add_director():
 @app.route("/director/<name>")
 def director(name):
 
-    sql = """SELECT name FROM movies WHERE director= :name"""
+    sql = """SELECT DISTINCT name FROM movies WHERE director= :name"""
     sql_result = db.session.execute(sql, {"name":name})
     movies = sql_result.fetchall()
     #movies = list(movies)
