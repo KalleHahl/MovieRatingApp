@@ -1,12 +1,42 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lisää ohjaaja</title>
 
-<form action="/add_director" method="POST">
+<form action="/add_director" method="POST" onsubmit="return check(this)">
     <h2>Ohjaajan nimi:</h2>
     <input type="text" name="name"><br>
     <h2>Syntymävuosi:</h2>
     <input type="text" name="year"><br>
     <input type="submit" value="Lisää">
 </form>
+
+<script>
+function check(form) {
+    birth = form.year.value
+    
+    
+    if (form.name.value.length > 100) {
+        alert("Nimi on liian pitkä");
+        return false;
+    }
+    if (form.name.value.length == 0) {
+        alert("Nimeä ei täytetty");
+        return false;
+    }
+    if (birth < 1862) {
+        alert("Ensimmäisen elokuvan ohjaaja Auguste Marie Louis Nicolas Lumière syntyi vuonna 1862... vuotesi ei siis voi täsmätä");
+        return false;
+    } 
+    if (birth>2022) {
+        alert("Syntymävuosi ei voi olla tulevaisuudesta...");
+        return false;
+    }
+    if (birth == 0) {
+        alert("Syntymävuotta ei täytetty");
+        return false;
+    }
+    return true;
+
+}
+</script>
 
 <a href="/library">Palaa takaisin</a>

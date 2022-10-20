@@ -173,16 +173,17 @@ def rate_movie(name):
 
 @app.route("/add_director", methods=["get", "post"])
 def add_director():
+    now = datetime.date.today()
+    now_year = now.year
 
     if request.method == "GET":
-        return render_template("add_director.html")
+        return render_template("add_director.html", now_year = now_year)
 
     if request.method == "POST":
 
         director = request.form["name"]
         birth_year = request.form["year"]
-        now = datetime.date.today()
-        now_year = now.year
+        
 
         try:
             birth_year = int(birth_year)
