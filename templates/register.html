@@ -3,7 +3,7 @@
 
 <title>Elokuvakirjasto rekisteröidy</title>
 
-<form action="/register" method="post">
+<form action="/register" method="post" onsubmit="return check(this)">
     <h1>Rekisteröidy käyttäjäksi!</h1>
     Käyttäjätunnus: <br>
     <input type="text" name="username"> <br>
@@ -15,4 +15,31 @@
     <input type="submit" value="Rekisteröidy">
     
 </form>
+<script>
+    function check(form){
+        
+        if (form.username.value.length == 0){
+            alert("Käyttäjänimi jäi täyttämättä");
+            return false;
+        }
+        if (form.username.value.length > 100){
+            alert("Käyttäjänimi on liian pitkä (max 100 chr)");
+            return false;
+        }
+        if (form.password1.value.length > 100){
+            alert("Salasana liian pitkä (max 100 chr)");
+            return false;
+        }
+        if  (form.password1.value.length<8){
+            alert("Salasana liian lyhyt (min 8 chr)");
+            return false;
+        }
+        if (form.password1.value != form.password2.value){
+            alert("Salasanat eivät täsmänneet");
+            return false;
+        }
+        return true;
+    }
+</script>
+
 <a href="/">Palaa takaisin</a>

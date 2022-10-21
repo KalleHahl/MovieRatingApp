@@ -34,6 +34,10 @@ function check(form) {
         alert("Syntymävuotta ei täytetty");
         return false;
     }
+    if (isNaN(birth)){
+        alert("Syntymävuoden täytyy olla luku");
+        return false;
+    }
     return true;
 
 }
