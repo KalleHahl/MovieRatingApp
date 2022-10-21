@@ -1,17 +1,32 @@
-
+<!DOCTYPE html>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<style>
+    .box {
+        background: greenyellow;
+        color: black;
+        padding: 20px;
+        width: 200px;
+    }
+</style>
+
 <title>Elokuvakirjasto kirjaudu</title>
 
-<form action="/login" method="post">
+<center><form action="/login" method="post">
     <h1>Kirjaudu sisään:</h1>
-    Käyttäjätunnus: <br>
+    <div class="box"><b>Käyttäjätunnus:</b> <br>
     <input type="text" name="username"> <br>
-    Salasana: <br>
+    <br>
+    <b>Salasana:</b> <br>
     <input type="password" name="password" minlength="8"><br>
+    <br>
     
     <input type="submit" value="Kirjaudu">
+</div>
     
 </form>
+
+<br>
 <a href="/">Palaa takaisin</a>
+</center>

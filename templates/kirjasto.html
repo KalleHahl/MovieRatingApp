@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Elokuvakirjasto</title>
@@ -7,25 +7,44 @@
     p{
         display:inline-block
     }
+    .movies{
+        background: orange;
+        width: 300px;
+
+    }
+    .directors{
+        background: greenyellow;
+        width: 300px;
+    }
 </style>
 
-<h1>Käyttäjän {{username}} elokuvat</h1>
+<center><h1>Käyttäjän {{username}} elokuvat</h1>
 <br>
-<a href="/logout">Kirjaudu ulos</a><br>
+
 <br>
 
 <p><a href="/add_movie">Lisää elokuva</a></p>&nbsp;&nbsp;&nbsp;&nbsp;<p><a href="/add_director">Lisää ohjaaja</a></p><br>
 <br>
-Elokuvasi:
+<div class="movies"><b>Elokuvat:</b>
+<br>
+<br>
 
-<hr>
+
 {% for movie in movies %}
-<a href="/movie/{{movie.name}}">{{movie.name}}</a>
-<hr>
+<a href="/movie/{{movie.name}}">{{movie.name}}</a><br><br>
+
 {% endfor %}<br>
-Ohjaajasi:
-<hr>
+</div>
+<br>
+<div class="directors"><b>Ohjaajat:</b>
+<br>
+<br>
+
 {% for director in directors %}
-<a href="/director/{{director.name}}">{{director.name}}</a>
-<hr>
+<a href="/director/{{director.name}}">{{director.name}}</a><br><br>
+
 {% endfor %}
+</div>
+<br>
+<a href="/logout">Kirjaudu ulos</a><br>
+</center>

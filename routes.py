@@ -200,6 +200,9 @@ def add_director():
 
 @app.route("/director/<name>")
 def director(name):
+    sql = """SELECT birth_year FROM directors WHERE name= :name"""
+    sql_result = db.session.execute(sql, {"name":name})
+    age = sql_result.fetchone()
 
     sql = """SELECT DISTINCT name FROM movies WHERE director= :name"""
     sql_result = db.session.execute(sql, {"name":name})
@@ -214,5 +217,5 @@ def director(name):
     else:
         avg = "Ei vielä arvosteluja!"
 
-    return render_template("director.html", name=name, movies=movies, avg= avg)
+    return render_template("director.html", name=name, movies=movies, avg= avg, age=age[0])
         

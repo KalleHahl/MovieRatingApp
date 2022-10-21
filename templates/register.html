@@ -1,20 +1,33 @@
-
+<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+    .box {
+        background: greenyellow;
+        color: black;
+        padding: 20px;
+        width: 200px;
+    }
+</style>
 
 <title>Elokuvakirjasto rekisteröidy</title>
 
-<form action="/register" method="post" onsubmit="return check(this)">
+<center><form action="/register" method="post" onsubmit="return check(this)">
     <h1>Rekisteröidy käyttäjäksi!</h1>
-    Käyttäjätunnus: <br>
+    <div class=box>Käyttäjätunnus: <br>
     <input type="text" name="username"> <br>
+    <br>
     Salasana (vähintään 8 merkkiä): <br>
     <input type="password" name="password1" minlength="8"><br>
+    <br>
     Salasana uudestaan:<br>
     <input type="password" name="password2" minlength="8"><br>
-
+    <br>
     <input type="submit" value="Rekisteröidy">
+</div>
     
 </form>
+
 <script>
     function check(form){
         
@@ -41,5 +54,7 @@
         return true;
     }
 </script>
+<br>
 
 <a href="/">Palaa takaisin</a>
+</center>

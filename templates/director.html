@@ -1,15 +1,33 @@
+<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    .info{
+        border: 2px solid black;
+    }
+    .movies{
+        background: greenyellow;
+        padding: 10px;
+        width: 200px;
+    }
+</style>
 
 <title>{{name}}</title>
 
-<h1>{{name}}</h1>
+<center><h1>{{name}}</h1>
 <br>
+<div class="info">
+<h2>Syntynyt: {{age}}</h2>
 <h2>Elokuvien keskiarvo: {{avg}}</h2><br>
+</div>
+<br>
 Elokuvat:
-<hr>
-{% for movie in movies %}
-<a href="/movie/{{movie.name}}">{{movie.name}}</a>
-<hr>
-{% endfor %}
+<br>
 
+{% for movie in movies %}
+<div class="movies"><a href="/movie/{{movie.name}}">{{movie.name}}</a><br>
+</div>
+<br>
+{% endfor %}
+<br>
 <a href="/library">Palaa takaisin kirjastoon</a>
+</center>

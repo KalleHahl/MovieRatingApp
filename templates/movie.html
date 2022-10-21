@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>{{movie}}</title>
@@ -5,31 +6,52 @@
     p{
         display: inline-block
     }
+    .info{
+        border: 2px solid rgb(0, 0, 0);
+    }
+    .own{
+        background: greenyellow;
+        padding: 10px;
+        width: 200px;
+    }
+    .others{
+        background: orange;
+        padding: 10px;
+        width: 200px;
+    }
 </style>
+<center>
 <h1>{{movie}}</h1>
 <br>
-<body>
+<div class="info">
     <p>Ohjaaja: <a href="/director/{{movie_info.director}}">{{movie_info.director}}</a></p>&nbsp;&nbsp;&nbsp;&nbsp;</p>Julkaisu vuosi: {{movie_info.year}}</p>
     &nbsp;&nbsp;&nbsp;&nbsp;Keskiarvo: {{avg}}
     <br>
-</body>
+</div>
+<br>
 <a href="/rate_movie/{{movie}}">Arvostele</a>
 <br>
 <h3>Oma arvostelu:</h3>
-Arvosana:<br>
+<div class="own">Arvosana:<br>
 {{omat.rating}}<br>
 Arvostelu:<br>
 {{omat.text}}<br>
-<hr>
+</div>
+
 <h3>Muiden Arvostelut:</h3>
+
 {% for arvostelut in muut %}
-Käyttäjä:<br>
-{{arvostelut.user_name}}<br>
-Arvosana:<br>
+
+<div class="others">{{arvostelut.user_name}}<br>
+Arvosana:&nbsp;&nbsp;
 {{arvostelut.rating}}<br>
-Arvostelu:
+Arvostelu:&nbsp;&nbsp;
 {{arvostelut.text}}
-<hr>
+</div>
+<br>
 {% endfor %}
 
+<br>
+
 <a href="/library">Palaa takaisin kirjastoon</a>
+</center>

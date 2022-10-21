@@ -1,13 +1,39 @@
+<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+    .name {
+        background: greenyellow;
+        color: black;
+        padding: 5px;
+        width: 200px;
+    }
+    .director{
+        background: orange;
+        color: black;
+        padding: 5px;
+        width: 200px;
+    }
+    .year{
+        background: burlywood;
+        color: black;
+        padding: 5px;
+        width: 200px;
+    }
+</style>
+
 <title>Lisää elokuva</title>
 
 <form action="/add_movie" method="POST" onsubmit="return check(this)">
-    <h2>Elokuvan nimi:</h2>
+    <div class="name"><h2>Elokuvan nimi:</h2>
     <input type="text" name="name"><br>
-    <h2>Ohjaaja:</h2>
+</div>
+    <div class="director"> <h2>Ohjaaja:</h2>
     <input type="text" name="director"><br>
-    <h2>Julkaisuvuosi:</h2>
+</div>
+    <div class="year"><h2>Julkaisuvuosi:</h2>
     <input type="text" name="year"><br>
+</div>
     <input type="submit" value="Lisää">
 </form>
 
@@ -46,5 +72,6 @@
 
     }
 </script>
+<br>
 
 <a href="/library">Palaa takaisin</a>

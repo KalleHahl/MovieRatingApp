@@ -1,11 +1,29 @@
+<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lisää ohjaaja</title>
 
+<style>
+    .name {
+        background: greenyellow;
+        color: black;
+        padding: 5px;
+        width: 200px;
+    }
+    .year{
+        background: orange;
+        color: black;
+        padding: 5px;
+        width: 200px;
+    }
+</style>
+
 <form action="/add_director" method="POST" onsubmit="return check(this)">
-    <h2>Ohjaajan nimi:</h2>
+    <div class="name"><h2>Ohjaajan nimi:</h2>
     <input type="text" name="name"><br>
-    <h2>Syntymävuosi:</h2>
+    </div>
+    <div class="year"><h2>Syntymävuosi:</h2>
     <input type="text" name="year"><br>
+</div>
     <input type="submit" value="Lisää">
 </form>
 
@@ -42,5 +60,6 @@ function check(form) {
 
 }
 </script>
+<br>
 
 <a href="/library">Palaa takaisin</a>

@@ -1,14 +1,24 @@
+<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    .box {
+        background: greenyellow;
+        color: black;
+        padding: 20px;
+        width: 200px;
+    }
+</style>
 
 <title>Arvostele {{movie}}</title>
 <h1>Arvostele {{movie}}</h1>
 
 <form action="/rate_movie/{{movie}}" method="POST" onsubmit="return check(this)">
-    Arvosana 1-10:<br>
+    <div class="box">Arvosana 1-10:<br>
     <input type="text" name="rating"><br>
     Lyhyt teksti:<br>
     <input type="text" name="text"> <br>
     <input type="submit" value="Lisää">
+</div>
 </form>
 
 <script>
@@ -37,4 +47,7 @@ function check(form){
     }
     return true;
 }
+
 </script>
+<br>
+<a href="/movie/{{movie}}">Palaa takaisin</a>
