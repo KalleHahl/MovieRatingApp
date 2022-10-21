@@ -34,14 +34,9 @@ def add_director(name, birth_year):
 
 def in_database(name):
     name = name.lower()
-    print(name)
     sql = """SELECT id FROM directors WHERE Lower(name)= :name"""
-    print(1)
     sql_result = db.session.execute(sql, {"name":name})
-    print(2)
     id = sql_result.fetchone()
-    print(3)
-    print(id)
     
     if id:
         return True
