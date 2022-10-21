@@ -31,7 +31,9 @@
 </h3>
 </div>
 <br>
+{% if omat.rating == null%}
 <a href="/rate_movie/{{movie}}">Arvostele</a>
+{% endif %}
 <br>
 <h3>Oma arvostelu:</h3>
 <div class="own">Arvosana:<br>
