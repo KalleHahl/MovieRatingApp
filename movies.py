@@ -38,6 +38,11 @@ def add_movie(name, director, year):
             db.session.commit()
             print(3)
 
+           
+
+
+            
+
     except:
         print("pieleen män")
         return False
@@ -65,3 +70,4 @@ def in_database(name):
         return True
 
     return False
+

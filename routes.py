@@ -1,5 +1,6 @@
  
 
+from email import message
 from app import app
 from flask import render_template, redirect, request, session
 import kayttajat
@@ -134,6 +135,7 @@ def movie(name):
     sql = """SELECT Avg(rating) FROM ratings WHERE movie_name= :movie_name"""
     sql_result = db.session.execute(sql, {"movie_name":name})
     avg = sql_result.fetchone()
+    
     if avg[0]:
         print(1)
         avg = round(avg[0], 1)
@@ -218,6 +220,11 @@ def director(name):
         avg = round(avg[0], 1)
     else:
         avg = "Ei vielä arvosteluja!"
-
-    return render_template("director.html", name=name, movies=movies, avg= avg, age=age[0])
+    
+    try:
+        age = age[0]
+    except:
+        return render_template("error.html", message="Ohjaajalle ei ole luotu vielä sivua, palaa etusivulle ja lisää ohjaaja kirjastoon!", route="/library")
+    
+    return render_template("director.html", name=name, movies=movies, avg= avg, age=age)
         
