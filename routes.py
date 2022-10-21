@@ -203,14 +203,16 @@ def director(name):
     sql = """SELECT birth_year FROM directors WHERE name= :name"""
     sql_result = db.session.execute(sql, {"name":name})
     age = sql_result.fetchone()
+    print(age)
 
     sql = """SELECT DISTINCT name FROM movies WHERE director= :name"""
     sql_result = db.session.execute(sql, {"name":name})
     movies = sql_result.fetchall()
-
+    print(movies)
     sql = """SELECT Avg(rating) FROM ratings WHERE movie_name IN (SELECT DISTINCT name FROM movies WHERE director= :director)"""
     sql_result = db.session.execute(sql, {"director":name})
     avg = sql_result.fetchone()
+    print(avg)
 
     if avg[0]: 
         avg = round(avg[0], 1)

@@ -24,9 +24,11 @@
 <h1>{{movie}}</h1>
 <br>
 <div class="info">
+    <h3>
     <p>Ohjaaja: <a href="/director/{{movie_info.director}}">{{movie_info.director}}</a></p>&nbsp;&nbsp;&nbsp;&nbsp;</p>Julkaisu vuosi: {{movie_info.year}}</p>
     &nbsp;&nbsp;&nbsp;&nbsp;Keskiarvo: {{avg}}
     <br>
+</h3>
 </div>
 <br>
 <a href="/rate_movie/{{movie}}">Arvostele</a>
@@ -42,10 +44,10 @@ Arvostelu:<br>
 
 {% for arvostelut in muut %}
 
-<div class="others">{{arvostelut.user_name}}<br>
+<div class="others">{{arvostelut.user_name}}<br><br>
 Arvosana:&nbsp;&nbsp;
-{{arvostelut.rating}}<br>
-Arvostelu:&nbsp;&nbsp;
+{{arvostelut.rating}}<br><br>
+Arvostelu:<br>
 {{arvostelut.text}}
 </div>
 <br>
