@@ -98,10 +98,10 @@ def add_movie():
         director = request.form["director"]
         year = request.form["year"]
 
-        if len(name) > 100:
+        if len(name) > 200:
             return render_template("error.html", message = "Liian pitkä nimi", route="/add_movie")
         
-        if len(director) > 100:
+        if len(director) > 200:
             return render_template("error.html", message = "Liian pitkä nimi", route="/add_movie")
         
         if len(year) > 100:

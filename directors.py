@@ -7,7 +7,8 @@ def add_director(name, birth_year):
         user = session["user_id"]
 
         if in_database(name):
-            sql = """SELECT id FROM directors WHERE name= :name"""
+            name = name.lower()
+            sql = """SELECT id FROM directors WHERE Lower(name)= :name"""
             sql_result = db.session.execute(sql, {"name":name})
             id = sql_result.fetchone()
 
@@ -15,6 +16,7 @@ def add_director(name, birth_year):
             db.session.execute(sql, {"user_id":user, "director_id":id[0]})
             db.session.commit()
         else:
+            name = name.title()
             sql = """INSERT INTO directors (name, birth_year) VALUES (:name, :birth_year)"""
             db.session.execute(sql, {"name":name, "birth_year":birth_year})
             db.session.commit()
@@ -31,9 +33,15 @@ def add_director(name, birth_year):
     return True
 
 def in_database(name):
-    sql = """SELECT id FROM directors WHERE name= :name"""
+    name = name.lower()
+    print(name)
+    sql = """SELECT id FROM directors WHERE Lower(name)= :name"""
+    print(1)
     sql_result = db.session.execute(sql, {"name":name})
+    print(2)
     id = sql_result.fetchone()
+    print(3)
+    print(id)
     
     if id:
         return True

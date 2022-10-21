@@ -1,7 +1,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lisää elokuva</title>
 
-<form action="/add_movie" method="POST">
+<form action="/add_movie" method="POST" onsubmit="return check(this)">
     <h2>Elokuvan nimi:</h2>
     <input type="text" name="name"><br>
     <h2>Ohjaaja:</h2>
@@ -10,5 +10,41 @@
     <input type="text" name="year"><br>
     <input type="submit" value="Lisää">
 </form>
+
+<script>
+    function check(form){
+        release = form.year.value
+        if (form.name.value.length  > 200){
+            alert("Liian pitkä elokuvan nimi");
+            return false;
+        }
+        if (form.name.value.length == 0){
+            alert("Elokuvan nimi jätettiin tyhjäksi");
+            return false;
+        }
+        if (form.director.value.length > 200){
+            alert("Liian pitkä ohjaajan nimi");
+            return false;
+        }
+        if (form.director.value.length == 0){
+            alert("Ohjaajan nimi jätettiin tyhjäksi");
+            return false;
+        }
+        if (release < 1895){
+            alert("Ensimmäinen elokuva julkaistiin vasta 1895");
+            return false;
+        }
+        if (release > 2022){
+            alert("Julkaisuvuosi liian suuri");
+            return false;
+        }
+        if (isNaN(release)){
+            alert("Julkaisuvuoden täytyy olla luku");
+            return false;
+        }
+        
+
+    }
+</script>
 
 <a href="/library">Palaa takaisin</a>

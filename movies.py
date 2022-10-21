@@ -7,8 +7,8 @@ def add_movie(name, director, year):
     try:
         user = session["user_id"]
         if in_database(name):
-            
-            sql = """SELECT id FROM movies WHERE name= :name"""
+            name = name.lower()
+            sql = """SELECT id FROM movies WHERE Lower(name)= :name"""
             sql_result = db.session.execute(sql, {"name": name})
             
             movie_id = sql_result.fetchone()
@@ -21,7 +21,8 @@ def add_movie(name, director, year):
             
             
         else:
-            
+            name = name.title()
+            director = director.title()
             sql = """INSERT INTO movies (name, director, year) VALUES (:name, :director, :year)"""
             db.session.execute(sql, {"name":name, "director": director, "year": year})
             db.session.commit()
@@ -55,8 +56,8 @@ def review(movie, rating, text):
     return True
 
 def in_database(name):
-
-    sql = """SELECT id FROM movies WHERE name= :name"""
+    name = name.lower()
+    sql = """SELECT id FROM movies WHERE Lower(name)= :name"""
     sql_result = db.session.execute(sql, {"name":name})
     movie_id = sql_result.fetchone()
 

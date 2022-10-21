@@ -7,6 +7,33 @@
     Arvosana 1-10:<br>
     <input type="text" name="rating"><br>
     Lyhyt teksti:<br>
-    <input type="text" name="text"><br>
+    <textarea type="text" name="text" rows="8" cols="40"></textarea></textarea> <br>
     <input type="submit" value="Lisää">
 </form>
+
+<script>
+    function check(form){
+        rating = form.rating.value
+
+        if (IsNaN(rating)){
+            alert("Arvosanan täytyy olla luku väliltä 1-10");
+            return false;
+        }
+        if (rating <= 0){
+            alert("Arvosanan täytyy olla luku väliltä 1-10");
+            return false;
+        }
+        if (rating > 10){
+            alert("Arvosanan täytyy olla luku väliltä 1-10");
+            return false;
+        }
+        if (form.text.value.length > 5000){
+            alert("Arvostelu ei saa ylittää 5000 merkkiä");
+            return false;
+        }
+        if (form.text.value.length < 2){
+            alert("Arvostelun tekstin oltava vähintään 2 merkin pituinen");
+            return false;
+        }
+    }
+</script>
