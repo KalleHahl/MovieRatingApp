@@ -1,9 +1,8 @@
  
 
-from email import message
 from app import app
 from flask import render_template, redirect, request, session
-import kayttajat
+import users
 import movies
 import directors
 from db import db
@@ -12,7 +11,7 @@ import datetime
 @app.route("/")
 def index():
 
-    return render_template("etusivu.html")
+    return render_template("frontpage.html")
 
 
 @app.route("/login", methods=["get", "post"])
@@ -26,7 +25,7 @@ def  login():
         username = request.form["username"]
         password = request.form["password"]
 
-        if not kayttajat.login(username, password):
+        if not users.login(username, password):
                 return render_template("error.html", message="Käyttäjätunnus tai salasana meni väärin", route="/login")
 
         return redirect("/library")
@@ -56,7 +55,7 @@ def register():
 
 
             
-    if not kayttajat.register(username, password):
+    if not users.register(username, password):
         return render_template("error.html", message="Rekisteröinti virhe!", route="/register")
 
     return redirect("/login")
@@ -65,7 +64,7 @@ def register():
 @app.route("/logout")
 def logout():
 
-    kayttajat.logout()
+    users.logout()
     return redirect("/")
 
 
@@ -84,7 +83,7 @@ def library():
         result = db.session.execute(sql, {"user_id":user_id})
         directors = result.fetchall()
 
-        return render_template("kirjasto.html", movies = movies, directors=directors, username = session["user_name"])
+        return render_template("library.html", movies = movies, directors=directors, username = session["user_name"])
 
 
 @app.route("/add_movie", methods=["get", "post"])
@@ -165,7 +164,10 @@ def rate_movie(name):
             return render_template("error.html", message="Arvosanan on oltava luku väliltä 1-10", route="/rate_movie/"+name)
 
         if len(text) > 5000:
-            return render_template("error.html", message="Liian pitkä arvostelu", route="/rate_movie/"+name)
+            return render_template("error.html", message="Liian pitkä arvostelu (max 5000 chr)", route="/rate_movie/"+name)
+
+        if len(text) < 2:
+            return render_template("error.html", message = "Arvostelun on oltava vähintään 2 merkkiä pitkä", route="/rate_movie/"+name)
 
         if not movies.review(name, rating,text):
             return render_template("error.html", message="Jokin meni pieleen", route="/rate_movie/"+name)

@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
     .box {
-        background: greenyellow;
+        background: rgb(255, 209, 122);
         color: black;
         padding: 20px;
         width: 200px;
@@ -10,6 +10,8 @@
 </style>
 
 <title>Arvostele {{movie}}</title>
+<body style="background-color: rgb(231, 190, 163);">
+<center>
 <h1>Arvostele {{movie}}</h1>
 
 <form action="/rate_movie/{{movie}}" method="POST" onsubmit="return check(this)">
@@ -51,3 +53,5 @@ function check(form){
 </script>
 <br>
 <a href="/movie/{{movie}}">Palaa takaisin</a>
+</center>
+</body>

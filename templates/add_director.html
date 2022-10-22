@@ -4,19 +4,20 @@
 
 <style>
     .name {
-        background: greenyellow;
+        background: rgb(213, 233, 184);
         color: black;
         padding: 5px;
         width: 250px;
     }
     .year{
-        background: orange;
+        background: rgb(255, 209, 122);
         color: black;
         padding: 5px;
         width: 250px;
     }
 </style>
-
+<body style="background-color: rgb(231, 190, 163);">
+<center>
 <form action="/add_director" method="POST" onsubmit="return check(this)">
     <div class="name"><h2>Ohjaajan nimi:</h2>
     <input type="text" name="name"><br>
@@ -63,3 +64,5 @@ function check(form) {
 <br>
 
 <a href="/library">Palaa takaisin</a>
+</center>
+</body>
