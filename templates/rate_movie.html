@@ -19,6 +19,7 @@
     <input type="text" name="rating"><br>
     Lyhyt teksti:<br>
     <input type="text" name="text"> <br>
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     <input type="submit" value="Lisää">
 </div>
 </form>

@@ -1,5 +1,5 @@
 import os
-from flask import request, session
+from flask import request, session, abort
 from db import db
 import secrets
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -33,4 +33,7 @@ def register(username, password):
 def logout():
     del session["user_id"]
     del session["user_name"]
-    del session["csrf_token"]
+
+def check_csrf():
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)

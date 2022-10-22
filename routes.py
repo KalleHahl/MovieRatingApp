@@ -24,6 +24,7 @@ def  login():
 
         username = request.form["username"]
         password = request.form["password"]
+        
 
         if not users.login(username, password):
                 return render_template("error.html", message="Käyttäjätunnus tai salasana meni väärin", route="/login")
@@ -93,6 +94,7 @@ def add_movie():
         return render_template("add_movie.html")
     
     if request.method == "POST":
+        users.check_csrf()
 
         name = request.form["name"]
         director = request.form["director"]
@@ -151,6 +153,8 @@ def rate_movie(name):
         return render_template("rate_movie.html", movie = name)
 
     if request.method == "POST":
+        
+        users.check_csrf()
 
         rating = request.form["rating"]
         text = request.form["text"]
@@ -184,6 +188,8 @@ def add_director():
         return render_template("add_director.html", now_year = now_year)
 
     if request.method == "POST":
+
+        users.check_csrf()
 
         director = request.form["name"]
         birth_year = request.form["year"]
