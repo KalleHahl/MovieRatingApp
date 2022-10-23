@@ -3,7 +3,7 @@ Sovelluksen avulla voi kirjata ylös katsomiaan elokuvia ja antaa niille arvoste
 
 ### Linkki sovellukseen:
 
-* Suosittelen lisäämään elokuvat Pulp Fiction (ohjaaja: Quentin Tarantino, julkaisu: 1994) ja Memoria (ohjaaja: Apitchatpong Weerasethakul, julkaisu: 2021), näille elokuville on muiden käyttäjien jättämiä arvosteluja
+* Voit testata, joko rekisteröimällä käyttäjän ja kirjautumalla sisään tai jos haluat mennä käyttäjälle jolla on jo valmiiksi muutamia elokuvia ja ohjaajia voit kirjautua käyttäjällä testaaja jonka salasana on testaaja. Quentin Tarantinolla on eniten elokuvia ja pulp fictionilla eniten arvosteluja!
 * [Elokuvakirjasto](https://tsoha-elokuvakirjasto.herokuapp.com/) 
 
 ### Sovelluksen ominaisuudet:
